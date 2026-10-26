@@ -1,0 +1,1 @@
+int camp(int n, double t, double *x, double *f, double *prm);
