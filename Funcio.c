@@ -13,7 +13,7 @@ int camp (int n, double t, double *x, double *f, double *prm){
     }else{
         f[0]=(*prm)*x[0]-x[1];
         f[1]=x[0]+(*prm)*x[1];
-    }
+    } 
 
     return 1;
 }
