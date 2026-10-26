@@ -23,7 +23,7 @@ int main(){
     x[0]=1;//x0
     x[1]=2;//y0
 
-    double a=1;
+    double a=0;
     double T=1;
 
     t=0;
@@ -40,7 +40,8 @@ int main(){
         printf("S'ha escurçat el pas per sota de hmin. T final: %.16G\n", t);
     }
 
-    printf("Posicio final: (%.16G,%.16G)", x[0], x[1]);
+    printf("Posicio final calculada: (%.16G, %.16G)\n", x[0], x[1]);
+    printf("Posicio final real: (%.16G, %.16G)", cos(t)-2*sin(t), sin(t)+2*cos(t));
 
 
     return 0;

@@ -5,7 +5,7 @@
 
 int camp (int n, double t, double *x, double *f, double *prm){
     if(n!=2){
-        printf("La funció esta pensada per n=2!!!");
+        printf("La funcio esta pensada per n=2!!!");
         return -1;
     }else if(prm==NULL){
         f[0]=x[0]-x[1];
