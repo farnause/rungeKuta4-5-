@@ -126,8 +126,8 @@ int rk45(double *ev, double *e, double *t, double *x,  double *h, double hmin, d
             free(K);
             free(x4);
             free(x5);
-            free(epsv);
-            return;//En teoria s'gauria de tenir en compte per canviar hmin
+            free(epsv); 
+            return -2; //En teoria s'gauria de tenir en compte per canviar hmin
         }
 
         printf("%G*%G*(%G/%G)^1/5, ",Abs(*(h)),p,tol,eps);
