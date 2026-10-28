@@ -62,27 +62,27 @@ El programa cuenta con 4 archivos .c y sus respectivos archivos con los headers.
 Por último el valor retornado por la función `rk45` nos dice si ha ocurrido algún problema durante el proceso de integración, donde un retorno de 1 indica que se ha integrado hasta el final sin ningún problema, y un retorno negativo indica que ha ocurrido algún error en el proceso, y se muestra el mensaje correspondiente.  
 Comentar que mientras es posible mostrar el error estimado con `e` y `ev`, no esta porgramado que se muestre por defecto.
 # Descripción
-##### Funciones presentes en `Funcio.c`
+### Funciones presentes en `Funcio.c`
 - **camp**: función que hace el papel del campo de la EDO. 
 
 Argumentos: `int n`: dimensión del campo,`double t`: variable que controla el tiempo de integración, `double *x`: pointer que apunta al vector donde se va almacenando el valor de la solución de la EDO, `double *f`: pointer que apunta a un vector que almacena el valor del campo después de recivir el valor de la solución en el tiempo correspondiente, `double *prm`: parámetros que pueda tener el campo.
 
 
-##### Funciones presentes en `otros.c`
--**Abs**: función que te devuelve el valor absoluto del input. Debido a experiencias pasadas prefiero declarar yo mismo la función valor absoluto y no usar la de `math.h`.  
+### Funciones presentes en `otros.c`
+- **Abs**: función que te devuelve el valor absoluto del input. Debido a experiencias pasadas prefiero declarar yo mismo la función valor absoluto y no usar la de `math.h`.  
 
 Argumentos: `double x`: valor del que se quiere el valor absoluto.  
 
--**minomax**: función que dependiendo del input, te devuelve el mínimo o máximo entre dos valores.  
+- **minomax**: función que dependiendo del input, te devuelve el mínimo o máximo entre dos valores.  
 
 Arguemntos: `double x, double y`: valores que queremos comparar, `int a`: si `a=-1` la función devuelve el mínimo, si `a=1` te devuelve el máximo.  
 
--**Start**: función void que acepta un vector y lo convierte en el vector nulo.
+- **Start**: función void que acepta un vector y lo convierte en el vector nulo.
 
 Argumentos: `double *v`: vector que queremos convertir en el vector nulo, `int n`: dimensión del vecvtor.
 
-##### Funciones presentes en `rk45.c`
--**rk45**: función que implementa el Runge-Kutta 4(5). 
+### Funciones presentes en `rk45.c`
+- **rk45**: función que implementa el Runge-Kutta 4(5). 
 
 Argumentos: `double *ev`: vector que almacenará el error estimado en cada coordenada de la solución, `double *e`: error en norma 1 del error estiamdo, `double *t`: variable que controla internamente el tiempo integrado, `double *x`: vector en el que se almacenará la solución,  `double *h`: varaible que controla internamente la longitud del paso de la iteración actual, `double hmin` i `double hmax`: rango de valores permitidos para `h`, `double tol`: tolerancia permitida, `int n`: dimensión del campo de la EDO, `int (*camp)(...)`: campo de la EDO, `double *prm`: paràmetros del campo de la EDO.
 
