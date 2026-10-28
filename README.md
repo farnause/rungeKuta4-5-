@@ -60,7 +60,7 @@ El programa cuenta con 4 archivos .c y sus respectivos archivos con los headers.
 - **`e` i `ev`**: `e` corresponde al módulo en norma 1 del error estimado total. Por otro lado, `ev` es un vector, en que cada coordenada representa el error estimado cometido en la coordenada correspondiente de la solución.  
 
 Por último, el valor retornado por la función `rk45` nos dice si ha ocurrido algún problema durante el proceso de integración, donde un retorno de 1 indica que se ha integrado hasta el final sin ningún problema, y un retorno negativo indica que ha ocurrido algún error en el proceso, y se muestra el mensaje correspondiente.  
-Comentar que, mientras es posible mostrar el error estimado con `e` y `ev`, no está porgramado que se muestre por defecto.
+
 # Descripción
 ### Funciones presentes en `Funcio.c`
 - **camp**: función que hace el papel del campo de la EDO. 
@@ -87,8 +87,8 @@ Argumentos: `double *v`: vector que queremos convertir en el vector nulo, `int n
 Argumentos: `double *ev`: vector que almacenará el error estimado en cada coordenada de la solución, `double *e`: error en norma 1 del error estimado, `double *t`: variable que controla internamente el tiempo integrado, `double *x`: vector en el que se almacenará la solución,  `double *h`: variable que controla internamente la longitud del paso de la iteración actual, `double hmin` i `double hmax`: rango de valores permitidos para `h`, `double tol`: tolerancia permitida, `int n`: dimensión del campo de la EDO, `int (*camp)(...)`: campo de la EDO, `double *prm`: parámetros del campo de la EDO.
 
 ## Observaciones
-Esta fue una de las prácticas que hice en la optativa de cálculo numérico de 4º curso del grado de Matemáticas en la UAB. 
+Es posible mostrar el error estimado utilizando `e` y `ev`, aunque no está programado que se muestre por defecto.
 # Comentarios personales respecto el programa
-Esta práctica me hizo sentir mucho más cómodo trabajando con memoria dinámica. 
+Esta fue una de las prácticas que hice en la optativa de cálculo numérico de 4º curso del grado de Matemáticas en la UAB. Esta práctica me hizo sentir mucho más cómodo trabajando con memoria dinámica. 
 También me obligó a organizar mis programas en varios archivos, cosa que permite no tener un main extremadamente largo. La organización de mis códigos siempre sufre de este problema y esta práctica fue un paso hacia mejorar este aspecto en particular.    
 Como mejora del programa, se podría dar más libertad al usuario para introducir las condiciones iniciales o incluso la tolerancia.  
