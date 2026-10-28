@@ -1,3 +1,6 @@
+#NO ACABADO
+
+
 # Objectivo
 El objetivo de este programa es implementar el método Runge-Kutta de orden 4 y 5 de 6 etapas con paso variable para resolver una ecuación diferencial con las condiciones iniciales dadas. Los coeficientes son
 
