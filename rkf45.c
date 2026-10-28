@@ -15,23 +15,26 @@ int rk45(double *ev, double *e, double *t, double *x,  double *h, double hmin, d
 	static double b[6] = {25./216., 0., 1408./2565., 2197./4104., -1./5.,0.};
 	static double bp[6] = {16./135., 0., 6656./12825., 28561./56430., -9./50., 2./55.};
 	static double E[6] = {-1./360., 0., 128./4275., 2197./75240., -1./50., -2./55.};
+
 	double p=0.9;
 	double eps=0;//varaible para calcular la distancia entre x7 i x8
 	double aux; //varaible auxiliar en el calculo de y2
 
 	*(h)=(Abs(*(h))/(*(h)))*minomax(hmax,minomax(hmin,Abs(*(h)),1),-1);//Para asegurarse que h esta eb (hmin, hmax)
 
-	double *f=malloc(n* sizeof(double));
-	double *y1=malloc(n* sizeof(double));//vecotor auxiliar para calcular lo que se le añade a x
-	double *y2=malloc(n* sizeof(double));//vecotor auxiliar para calcular beta*kapa anterior
+	double *f=malloc(n* sizeof(double)); //vector para el campo
+	double *y1=malloc(n* sizeof(double));//vector auxiliar para calcular lo que se le añade a x
+	double *y2=malloc(n* sizeof(double));//vector auxiliar para calcular beta*kapa anterior
 	double *y3=malloc(n* sizeof(double));//por el calculo del error
 	double *y=malloc(n* sizeof(double));//vector auxiliar en el que se alamcena x+y1
 	double *K=malloc((n*6)*sizeof(double));//aquí es necesario saber el número de etapas del rkf (en este caso 6)
 	double *x4=malloc(n* sizeof(double));//aproximación
 	double *x5=malloc(n* sizeof(double));//valor de mayor "precisión" con el que se calcula el error
-	double *epsv=malloc(n* sizeof(double));
+	double *epsv=malloc(n* sizeof(double)); //vector del incremento del error estimado por coordendada
 
-    camp(n,*t,x,f,prm);
+    if (camp(n,*t,x,f,prm)!=1){
+        return -1;
+    }
     for(int i=0;i<n;i++){
         K[i]=f[i]; //K respresenta una matriz en que cada hilera es una etapa
     }//"K[0]=f(t,x)"
@@ -50,8 +53,9 @@ int rk45(double *ev, double *e, double *t, double *x,  double *h, double hmin, d
             for (int j=0; j<n; j++){
                 y[j]=x[j]+y1[j];
             }
-            camp(n,*t+c[l],y,f,prm);
-
+            if (camp(n,*t,x,f,prm)!=1){
+                return -1;
+            }
             for(int i=0;i<n;i++){
                 K[l*n+i]=f[i]; 
             }
