@@ -9,7 +9,7 @@ double Abs(double x){//función propia de valor absoluto
         return -x;
     }
 }
-double minomax(double x, double y, int a){//si a=-1 la función devuelve el mínimo, si a=1 te devuelove el máximo
+double minomax(double x, double y, int a){//si a=-1 la función devuelve el mínimo, si a=1 te devuelve el máximo
 
     if(x<y && a==-1){
          return x;

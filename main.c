@@ -31,7 +31,7 @@ int main(){
     t=0;//valor inicial de t
     tol=1e-10; //tolerancia que se le permite al error
 
-    //vaores entre los que h se puede encontrar
+    //valores entre los que h se puede encontrar
     hmin=tol;
     hmax=0.1;
     
@@ -45,7 +45,7 @@ int main(){
         printf("El valor de h se ha reducido por debajo de hmin. T final: %.16G\n", t);
     }
 
-    printf("Posicion final calculada: (%.16G, %.16G)\n", x[0], x[1]);
+    printf("Posicion final calculada: (%.16G, %.16G), t: %.16G\n", x[0], x[1],t);
     printf("Posicion final real: (%.16G, %.16G)", exp(a*t)*(x0*cos(t)-y0*sin(t)), exp(a*t)*(x0*sin(t)+y0*cos(t)));
 
 
