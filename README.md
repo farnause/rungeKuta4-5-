@@ -1,55 +1,49 @@
 # Objectivo
 El objetivo de este programa es implementar el método Runge-Kutta de orden 4 y 5 de 6 etapas con paso variable para resolver una equación diferencial con las condiciones iniciales dadas. Los coeficientes son
 
-| \(i\) | $c_i$ | $a_{i1}$ | $a_{i2}$ | $a_{i3}$ | $a_{i4}$ | $a_{i5}$ | $a_{i6}$ |
+| $i$ | $c_i$ | $a_{i1}$ | $a_{i2}$ | $a_{i3}$ | $a_{i4}$ | $a_{i5}$ | $a_{i6}$ |
 |---:|---:|---:|---:|---:|---:|---:|---:|
-| 1 | \(0\) | \(0\) | \(0\) | \(0\) | \(0\) | \(0\) | \(0\) |
-| 2 | \(\frac14\) | \(\frac14\) | \(0\) | \(0\) | \(0\) | \(0\) | \(0\) |
-| 3 | \(\frac38\) | \(\frac{3}{32}\) | \(\frac{9}{32}\) | \(0\) | \(0\) | \(0\) | \(0\) |
-| 4 | \(\frac{12}{13}\) | \(\frac{1932}{2197}\) | \(-\frac{7200}{2197}\) | \(\frac{7296}{2197}\) | \(0\) | \(0\) | \(0\) |
-| 5 | \(1\) | \(\frac{439}{216}\) | \(-8\) | \(\frac{3680}{513}\) | \(-\frac{845}{4104}\) | \(0\) | \(0\) |
-| 6 | \(\frac12\) | \(-\frac{8}{27}\) | \(2\) | \(-\frac{3544}{2565}\) | \(\frac{1859}{4104}\) | \(-\frac{11}{40}\) | \(0\) |
+| 1 | $0$ | $0$ | $0$ | $0$ | $0$ | $0$ | $0$ |
+| 2 | $\frac14$ | $\frac14$ | $0$ | $0$ | $0$ | $0$ | $0$ |
+| 3 | $\frac38$ | $\frac{3}{32}$ | $\frac{9}{32}$ | $0$ | $0$ | $0$ | $0$ |
+| 4 | $\frac{12}{13}$ | $\frac{1932}{2197}$ | $-\frac{7200}{2197}$ | $\frac{7296}{2197}$ | $0$ | $0$ | $0$ |
+| 5 | $1$ | $\frac{439}{216}$ | $-8$ | $\frac{3680}{513}$ | $-\frac{845}{4104}$ | $0$ | $0$ |
+| 6 | $\frac12$ | $-\frac{8}{27}$ | $2$ | $-\frac{3544}{2565}$ | $\frac{1859}{4104}$ | $-\frac{11}{40}$ | $0$ |
 
 
-| \(i\) | \(b_i\) (orden 4) | \(\hat b_i\) (orden 5) |
+| $i$ | $b_i$ (orden 4) | $\hat b_i$ (orden 5) |
 |---:|---:|---:|
-| 1 | \(\frac{25}{216}\) | \(\frac{16}{135}\) |
-| 2 | \(0\) | \(0\) |
-| 3 | \(\frac{1408}{2565}\) | \(\frac{6656}{12825}\) |
-| 4 | \(\frac{2197}{4104}\) | \(\frac{28561}{56430}\) |
-| 5 | \(-\frac15\) | \(-\frac9{50}\) |
-| 6 | \(0\) | \(\frac2{55}\) |
+| 1 | $\frac{25}{216}$ | $\frac{16}{135}$ |
+| 2 | $0$ | $0$ |
+| 3 | $\frac{1408}{2565}$ | $\frac{6656}{12825}$ |
+| 4 | $\frac{2197}{4104}$ | $\frac{28561}{56430}$ |
+| 5 | $-\frac15$ | $-\frac9{50}$ |
+| 6 | $0$ | $\frac2{55}$ |
 
-La estimación del error local se obtiene comparando las soluciones de orden 4 y 5:
+La gracia de un Runge-Kutta de orden 4 y 5 se puede estimar el error cometido en cada paso comparando las soluciones de orden 4 y 5:
 
 $$
-\[
 e_k \approx \left\|x_{k}^{(5)}-x_{k}^{(4)}\right\|.
-\]
 $$
 
 La EDO que se quiere resolver es
 
 $$
-\[
 \begin{cases}
 \dot{x}=ax-y,\\
 \dot{y}=x+ay,
 \end{cases}
 \qquad
 x(0)=x_0,\quad y(0)=y_0.
-\]
 $$
 
 La solución exacta es
 
 $$
-\[
 \begin{aligned}
 x(t)&=e^{at}\bigl(x_0\cos t-y_0\sin t\bigr),\\
 y(t)&=e^{at}\bigl(x_0\sin t+y_0\cos t\bigr).
 \end{aligned}
-\]
 $$
 
 
