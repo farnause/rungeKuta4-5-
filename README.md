@@ -81,7 +81,7 @@ Arguemntos: `double x, double y`: valores que queremos comparar, `int a`: si `a=
 
 Argumentos: `double *v`: vector que queremos convertir en el vector nulo, `int n`: dimensión del vecvtor.
 
-### Funciones presentes en `rk45.c`
+### Funciones presentes en `rkf45.c`
 - **rk45**: función que implementa el Runge-Kutta 4(5). 
 
 Argumentos: `double *ev`: vector que almacenará el error estimado en cada coordenada de la solución, `double *e`: error en norma 1 del error estiamdo, `double *t`: variable que controla internamente el tiempo integrado, `double *x`: vector en el que se almacenará la solución,  `double *h`: varaible que controla internamente la longitud del paso de la iteración actual, `double hmin` i `double hmax`: rango de valores permitidos para `h`, `double tol`: tolerancia permitida, `int n`: dimensión del campo de la EDO, `int (*camp)(...)`: campo de la EDO, `double *prm`: paràmetros del campo de la EDO.
@@ -89,6 +89,6 @@ Argumentos: `double *ev`: vector que almacenará el error estimado en cada coord
 ## Observaciones
 Esta fue una de las prácticas que hice en la optativa de cálculo numérico de 4to curso del grado de Matemáticas en la UAB. 
 # Comentarios personales respecto el programa
-Esta práctica me hizo sentir mucho más cómodo trabajando con memória dinámica.  
-También me obligó a organizar mis programas en varios archivos, cosa que permite no tener un main extremadamente largo. La organización de mis codigos siempre sufre de este problema y esta práctica fue un paso hacia mejorar este aspecto en particular.  
+Esta práctica me hizo sentir mucho más cómodo trabajando con memória dinámica. 
+También me obligó a organizar mis programas en varios archivos, cosa que permite no tener un main extremadamente largo. La organización de mis codigos siempre sufre de este problema y esta práctica fue un paso hacia mejorar este aspecto en particular.    
 Como mejora del programa, se podria dar más libertad al usuario para introducir la las conduiciones iniciales o incluso la tolerancia.  
