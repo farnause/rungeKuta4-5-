@@ -1,7 +1,7 @@
 # Objectivo
 El objetivo de este programa es implementar el método Runge-Kutta de orden 4 y 5 de 6 etapas con paso variable para resolver una equación diferencial con las condiciones iniciales dadas. Los coeficientes son
 
-| \(i\) | \(c_i\) | \(a_{i1}\) | \(a_{i2}\) | \(a_{i3}\) | \(a_{i4}\) | \(a_{i5}\) | \(a_{i6}\) |
+| \(i\) | $c_i$ | $a_{i1}$ | $a_{i2}$ | $a_{i3}$ | $a_{i4}$ | $a_{i5}$ | $a_{i6}$ |
 |---:|---:|---:|---:|---:|---:|---:|---:|
 | 1 | \(0\) | \(0\) | \(0\) | \(0\) | \(0\) | \(0\) | \(0\) |
 | 2 | \(\frac14\) | \(\frac14\) | \(0\) | \(0\) | \(0\) | \(0\) | \(0\) |
@@ -22,12 +22,15 @@ El objetivo de este programa es implementar el método Runge-Kutta de orden 4 y 
 
 La estimación del error local se obtiene comparando las soluciones de orden 4 y 5:
 
+$$
 \[
 e_k \approx \left\|x_{k}^{(5)}-x_{k}^{(4)}\right\|.
 \]
+$$
 
 La EDO que se quiere resolver es
 
+$$
 \[
 \begin{cases}
 \dot{x}=ax-y,\\
@@ -36,15 +39,18 @@ La EDO que se quiere resolver es
 \qquad
 x(0)=x_0,\quad y(0)=y_0.
 \]
+$$
 
 La solución exacta es
 
+$$
 \[
 \begin{aligned}
 x(t)&=e^{at}\bigl(x_0\cos t-y_0\sin t\bigr),\\
 y(t)&=e^{at}\bigl(x_0\sin t+y_0\cos t\bigr).
 \end{aligned}
 \]
+$$
 
 
 # Cómo funciona
