@@ -135,7 +135,7 @@ int rk45(double *ev, double *e, double *t, double *x,  double *h, double hmin, d
             free(x4);
             free(x5);
             free(epsv); 
-            return -2; //Mostramos error si h llega a ser menor que hmin
+            return -1; //Mostramos error si h llega a ser menor que hmin
         }
 
         *(h)=(Abs(*(h))/(*(h)))*minomax(hmin,Abs(*(h))*p*pow(tol/eps,1./5.),1);//paso de seguridad para el nuevo h
@@ -143,5 +143,41 @@ int rk45(double *ev, double *e, double *t, double *x,  double *h, double hmin, d
 	}
 	return 0;
 }
+
+int flux (double *ev, double *e, double *t, double *x, double *h, double T, double hmin,double hmax, double tol, int npasmax, int n,int (*camp)(int n, double t, double *x, double *f, double *prm),double *prm){
+ int k=0;
+ int N;//N maracará el numero de pasos recomendados, en caso de llegar a las iteraciones máximas
+ if(T*(*h)<0){//queremos que h tenga el mismo signo que T (contemplamos que se pueda integrar hacia atrás)
+    *h=T/Abs(T)*Abs(*h);
+ }
+ double t0=*t;
+    while (k<npasmax){//mientras que no se superen los pasos máximos, queremos seguir integrando si t<T
+        if(rk45(ev,e,t,x,h,hmin,hmax,tol,n,camp,prm)<0){
+            return -1;
+        }
+        if(*t+*h>T+t0 && T>0){ //caso integrar hacia adelante
+            *h=*(h)/Abs(*(h))*Abs(t0+T-*t);
+            if(rk45(ev,e,t,x,h,hmin,hmax,tol,n,camp,prm)==-1){
+                return -1;
+            }
+            k++;
+            break;
+        }else if(*t+*h<T+t0 && T<0){ //caso integrar hacia atrás
+            *h=*(h)/Abs(*(h))*Abs(t0+T-*t);
+            if(rk45(ev,e,t,x,h,hmin,hmax,tol,n,camp,prm)==-1){
+                return -1;
+            }
+            k++;
+            break;
+        }
+        k++;
+    }
+    if(k==npasmax){
+            N=2*(T/(*h)+1);
+            printf("Max it assolides. npasmax que pot funcionar: %G\n",N);
+            return -1;
+    }
+    return 0;
+ }
 
 
