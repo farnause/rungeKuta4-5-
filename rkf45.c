@@ -40,7 +40,7 @@ int rk45(double *ev, double *e, double *t, double *x,  double *h, double hmin, d
     }//"K[0]=f(t,x)"
 	while(1){
 
-        //CALCULO DE LAS ETAPAS
+        //CÁLCULO DE LAS ETAPAS
         for(int l=1; l<6; l++){//Aquí tambien se ha de tener en cuenta el número de etapas (6)
             aux=(l*l-l)/2.;
             Start(y1,n);
@@ -53,7 +53,7 @@ int rk45(double *ev, double *e, double *t, double *x,  double *h, double hmin, d
             for (int j=0; j<n; j++){
                 y[j]=x[j]+y1[j];
             }
-            if (camp(n,*t,x,f,prm)!=1){
+            if (camp(n,*t+c[l]*(*h),y,f,prm)!=1){
                 return -1;
             }
             for(int i=0;i<n;i++){

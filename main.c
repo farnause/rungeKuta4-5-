@@ -27,7 +27,7 @@ int main(){
 
     a=1;//valor del parámetro
     T=3;//tiempo final
-    tol=1E-10;//tolerancia que se le permite al error
+    tol=1E-13;//tolerancia que se le permite al error
     h=0.01;//valor inicial de h
 
     //valores entre los que h se puede encontrar
@@ -44,7 +44,7 @@ int main(){
         printf("Posicion final calculada: (%.16G, %.16G), t: %.16G\n", x[0], x[1]);
         printf("Posicion final real: (%.16G, %.16G)", exp(a*t)*(x0*cos(t)-y0*sin(t)), exp(a*t)*(x0*sin(t)+y0*cos(t)));
     }else{
-        printf("Posicion final calculada: (%.16G, %.16G), t: %.16G\n", x[0], x[1]);
+        printf("Posicion final calculada: (%.16G, %.16G), t: %.16G\n", x[0], x[1],t);
         printf("Posicion final real: (%.16G, %.16G)", exp(a*t)*(x0*cos(t)-y0*sin(t)), exp(a*t)*(x0*sin(t)+y0*cos(t)));
     }
 
