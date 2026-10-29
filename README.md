@@ -1,5 +1,3 @@
-#NO ACABADO
-
 
 # Objectivo
 El objetivo de este programa es implementar el método Runge-Kutta de orden 4 y 5 de 6 etapas con paso variable para resolver una ecuación diferencial con las condiciones iniciales dadas. Los coeficientes son
@@ -52,7 +50,7 @@ $$
 
 
 # Cómo funciona
-El programa cuenta con 4 archivos .c y sus respectivos archivos con los headers. En `Funcio.c` está declarado el campo de la EDO, en `rkf45.c` está implementado el método Runge-Kutta 4(5), en `otros.c` hay funciones auxiliares y, por último, en `main.c` están declaradas las constantes relevantes para poder iniciar el Runge-Kutta. Concretamente, en este archivo se especifica
+El programa cuenta con 4 archivos .c y sus respectivos archivos con los headers. En `Funcio.c` está declarado el campo de la EDO, en `rkf45.c` están las funciones necesarias para implementar el método Runge-Kutta 4(5), en `otros.c` hay funciones auxiliares y, por último, en `main.c` están declaradas las constantes relevantes para poder iniciar el Runge-Kutta. Concretamente, en este archivo se especifica
 - **Condiciones iniciales**: El valor de la solución de la EDO en `t0`, `(x0,y0)`.
 - **`n`**: dimensión del campo.
 - **`h`**: variable que controla la longitud del paso actual dentro de `rk45`. 
@@ -60,9 +58,10 @@ El programa cuenta con 4 archivos .c y sus respectivos archivos con los headers.
 - **`t` y `T`**: La variable `t` es la que controla el tiempo que hemos integrado, y su valor inicial es 0. Por otro lado, `T` corresponde al `t` final, o hasta qué tiempo queremos integrar. 
 - **`a`**: parámetros que puede tener el campo de la EDO. Está declarado como un double con valor 0, pero sería sencillo adaptarlo a un vector que pudiera contener más de un valor. 
 - **Tolerancia**: error máximo permitido del método Runge-Kutta, que corresponde a la variable `tol`. Por defecto su valor es `tol=1e-10`.
-- **`e` i `ev`**: `e` corresponde al módulo en norma 1 del error estimado total. Por otro lado, `ev` es un vector, en que cada coordenada representa el error estimado cometido en la coordenada correspondiente de la solución.  
+- **`e` y `ev`**: `e` corresponde al módulo en norma 1 del error estimado total. Por otro lado, `ev` es un vector, en que cada coordenada representa el error estimado cometido en la coordenada correspondiente de la solución. 
+- **`npasmax`**: número de pasos que le permitimos hacer al programa.
 
-Por último, el valor retornado por la función `rk45` nos dice si ha ocurrido algún problema durante el proceso de integración, donde un retorno de 1 indica que se ha integrado hasta el final sin ningún problema, y un retorno negativo indica que ha ocurrido algún error en el proceso, y se muestra el mensaje correspondiente.  
+La función `flux` es la que hace la integración numérica hasta el tiempo final especificado, utilizando `rk45` para hacer cada paso de la integración. La función `flux` se puede parar en caso de encontrar algún error, como que el número de pasos hecho sea mayor que `npasmax` o en caso de que `rk45` encuentre algún problema. 
 
 # Descripción
 ### Funciones presentes en `Funcio.c`
@@ -85,9 +84,13 @@ Argumentos: `double x, double y`: valores que queremos comparar, `int a`: si `a=
 Argumentos: `double *v`: vector que queremos convertir en el vector nulo, `int n`: dimensión del vector.
 
 ### Funciones presentes en `rkf45.c`
-- **rk45**: función que implementa el Runge-Kutta 4(5). 
+- **rk45**: función que efectúa cada paso de la integración numérica, controlando el valor de `h` para forzar que el error se mantenga por debajo de la tolerancia. 
 
 Argumentos: `double *ev`: vector que almacenará el error estimado en cada coordenada de la solución, `double *e`: error en norma 1 del error estimado, `double *t`: variable que controla internamente el tiempo integrado, `double *x`: vector en el que se almacenará la solución,  `double *h`: variable que controla internamente la longitud del paso de la iteración actual, `double hmin` i `double hmax`: rango de valores permitidos para `h`, `double tol`: tolerancia permitida, `int n`: dimensión del campo de la EDO, `int (*camp)(...)`: campo de la EDO, `double *prm`: parámetros del campo de la EDO.
+
+- **flux**: función que integra hacia el tiempo final indicado, o hasta que se superen el número máximo de pasos indicado. Según el signo de `T`, integra hacia atrás o hacia adelante en el tiempo, respecto el valor de `t` inicial. 
+
+Argumentos: hereda los argumentos de `rk45` y añade `int npasmax`: número de pasos máximos que permitimos. 
 
 ## Observaciones
 Es posible mostrar el error estimado utilizando `e` y `ev`, aunque no está programado que se muestre por defecto.
